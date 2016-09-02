@@ -17,7 +17,7 @@ function fillArray(&$array, $n)
 {       
     for ($i=0; $i<$n; $i++)
     {
-     $value = rand(1,10000);               //TODO: check if you can rand wittouh variable :)
+     $value = rand(1,10000);               //TODO: check if you can rand without variable :)
      $array[$i] = $value;
     }
 }
@@ -97,18 +97,18 @@ Returns: void
 
 function showArray($array)
 {
-    global $array;
     $n = count($array);
-    
-    for ($i=0; $i<$n; $i++) echo "[".$i."] ".$array[$i]."<br>";
+
+    foreach($array as $key => $value) echo "[".$key."] ".$value."<br>";
 }
 
-/*MAIN*/
+/* MAIN PHP */
 
 fillArray($array, ARRAY_LENGTH);
 
 $quickArray = $array;
 $bubbleArray = $array;
+$phpSort = $array;
 
 echo ARRAY_LENGTH." numbers to sort <br>";
 sleep(3); // a little time for rest
@@ -127,6 +127,32 @@ $time_stop = microtime($get_as_float = true);
 $elapsed_time = $time_stop - $time_start;
 echo "Quick sort have taken: ".$elapsed_time." seconds <br>";
 
-/*END OF MAIN*/
+sleep(3); // a little time for rest
 
+$time_start = microtime($get_as_float = true);
+sort($phpSort);
+$time_stop = microtime($get_as_float = true);
+$elapsed_time = $time_stop - $time_start;
+echo "php sort() function have taken: ".$elapsed_time." seconds <br>";
+
+/* END OF MAIN PHP */
 ?>
+
+<!-- HTML OUTPUT -->
+<?php echo "Arrays check:" ?>
+
+<html>
+    <table>
+        <tr>
+            <td><?php showArray($bubbleArray) ?></td>
+            <td><?php showArray($quickArray) ?></td>
+            <td><?php showArray($phpSort) ?></td>
+        </tr>
+    </table>
+</html>
+
+
+
+
+
+
